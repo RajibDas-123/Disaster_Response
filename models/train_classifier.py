@@ -27,7 +27,7 @@ def tokenize(text):
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
     stemmer = PorterStemmer()
-    tokens = [lemmatizer.lemmatize(token) for token in tokens if token not in stopwords.words("english")]
+    tokens = [lemmatizer.lemmatize(token).lower().strip() for token in tokens if token not in stopwords.words("english")]
     tokens = [stemmer.stem(token) for token in tokens]
     return tokens
         
