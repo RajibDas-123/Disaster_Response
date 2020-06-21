@@ -40,14 +40,14 @@ def build_model():
         ('clf', RandomForestClassifier())
     ])
     
-    parameters = {
-        'tfidf__use_idf':[True, False],
-        'clf__criterion':["gini", "entropy"]
-    }
+    # parameters = {
+    #     'tfidf__use_idf':[True, False],
+    #     'clf__criterion':["gini", "entropy"]
+    # }
 
-    cv = GridSearchCV(pipeline, param_grid=parameters)
+    # cv = GridSearchCV(pipeline, param_grid=parameters)
     
-    return cv
+    return pipeline
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
