@@ -10,7 +10,8 @@ def load_data(messages_filepath, categories_filepath):
     messages = pd.read_csv("messages.csv")
     categories = pd.read_csv("categories.csv")
     df = pd.merge(messages, categories, on="id")
-    
+
+    #exctracting all the caegories    
     categories = categories.categories.str.split(";", expand=True)
     row = categories.loc[0]
     
