@@ -33,9 +33,12 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         sentence_list = nltk.sent_tokenize(text)
         for sentence in sentence_list:
             pos_tags = nltk.pos_tag(tokenize(sentence))
-            first_word, first_tag = pos_tags[0]
-            if first_tag in ['VB', 'VBP'] or first_word == 'RT':
-                return True
+            try:
+                first_word, first_tag = pos_tags[0]
+                if first_tag in ['VB', 'VBP'] or first_word == 'RT':
+                    return True
+            except:
+                return False        
         return False
 
     def fit(self, X, y=None):
