@@ -68,20 +68,20 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
-    """
-    Tokenize function
-    
-    Arguments:
-        text -> list of text messages (english)
-    Output:
-        clean_tokens -> tokenized text, clean for ML modeling
-    """
+    url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+    detected_urls = re.findall(url_regex, text)
+    for url in detected_urls:
+        text = text.replace(url, "urlplaceholder")
+
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
-    stemmer = PorterStemmer()
-    tokens = [lemmatizer.lemmatize(token).lower().strip() for token in tokens if token not in stopwords.words("english")]
-    tokens = [stemmer.stem(token) for token in tokens]
-    return tokens
+
+    clean_tokens = []
+    for tok in tokens:
+        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+        clean_tokens.append(clean_tok)
+
+    return clean_tokens
         
 
 

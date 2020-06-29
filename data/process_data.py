@@ -23,7 +23,7 @@ def load_data(messages_filepath, categories_filepath):
     df = pd.merge(messages, categories, on="id")
 
     #exctracting all the caegories    
-    categories = categories.categories.str.split(";", expand=True)
+    categories = df.categories.str.split(";", expand=True)
     row = categories.loc[0]
     
     category_colnames = row.apply(lambda cat: cat[:-2])
