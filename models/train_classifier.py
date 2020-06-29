@@ -154,7 +154,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
     for catg in category_names:
         print('------------------------------------------------------\n')
-        print('FEATURE: {}\n'.format(category_names[catg]))
+        print('FEATURE: {}\n'.format(catg))
         print(classification_report(df_test[catg],df_pred[catg]))
 
     
