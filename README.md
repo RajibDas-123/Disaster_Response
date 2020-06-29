@@ -79,8 +79,8 @@ git clone https://github.com/matteobonanomi/disaster-response.git
 
 2. You can type your message in the input field as shown **Classify Message**, you can see the categories which the message belongs to highlighted in green
 
-![Querying](screenshots/sample_output.png)
+![Querying](imgs/querying.png)
 
 3. On clicking **Classify Message**, you can see the categories which the message belongs to highlighted in green
 
-![CLassification Result](screenshots/main_page.png)
+![CLassification Result](imgs/classification_result.png)
