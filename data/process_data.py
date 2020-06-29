@@ -6,6 +6,16 @@ from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
+
+    """
+    Load Data function
+    
+    Arguments:
+        messages_filepath -> path to messages csv file
+        categories_filepath -> path to categories csv file
+    Output:
+        df -> Loaded dasa as Pandas DataFrame
+    """
     
     messages = pd.read_csv("messages.csv")
     categories = pd.read_csv("categories.csv")
@@ -34,6 +44,15 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+
+    """
+    Clean Data function
+    
+    Arguments:
+        df -> raw data Pandas DataFrame
+    Outputs:
+        df -> clean data Pandas DataFrame
+    """
     
     df.iloc[:, 4:] = df.iloc[:,4:].applymap(lambda x: 1 if x > 1 else x)
     
@@ -45,12 +64,31 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+
+    """
+    Save Data function
+    
+    Arguments:
+        df -> Clean data Pandas DataFrame
+        database_filename -> database file (.db) destination path
+    """
+
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('disaster_data', engine, index=False)
       
 
 
 def main():
+
+    """
+    Main process function
+    
+    This function implements the ETL pipeline:
+        E: Data extraction from .csv
+        T: Data cleaning and pre-processing
+        L: Data loading to SQLite database
+    """
+
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
