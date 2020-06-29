@@ -18,8 +18,8 @@ def load_data(messages_filepath, categories_filepath):
         df -> Loaded dasa as Pandas DataFrame
     """
     
-    messages = pd.read_csv("messages.csv")
-    categories = pd.read_csv("categories.csv")
+    messages = pd.read_csv(messages_filepath)
+    categories = pd.read_csv(categories_filepath)
     df = pd.merge(messages, categories, on="id")
 
     #exctracting all the caegories    
@@ -56,6 +56,8 @@ def clean_data(df):
     """
     
     df.iloc[:, 4:] = df.iloc[:,4:].applymap(lambda x: 1 if x > 1 else x)
+
+    category_colnames = df.iloc[:4].columns
     
     df = df.drop_duplicates(keep='first')
     
