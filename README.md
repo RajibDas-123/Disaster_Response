@@ -40,7 +40,7 @@ The Project is divided in the following Sections:
 ### Downloading
 Clone this GIT repository:
 ```
-git clone https://github.com/matteobonanomi/disaster-response.git
+git clone https://github.com/RajibDas-123/Disaster_Response
 ```
 <a name="executing"></a>
 ### Executing Program:
@@ -61,7 +61,7 @@ git clone https://github.com/matteobonanomi/disaster-response.git
 <a name="authors"></a>
 ## Authors
 
-* [Matteo Bonanomi](https://github.com/matteobonanomi)
+* [Rajib Das](https://github.com/RajibDas-123/Disaster_Response)
 
 
 <a name="acknowledgement"></a>
