@@ -1,6 +1,6 @@
 # Disaster Response Pipeline Project
 
-![Intro Pic](screenshots/intro.png)
+![Landing Page](imgs/landing.png)
 
 ## Table of Contents
 1. [Description](#description)
@@ -9,7 +9,6 @@
 	2. [Downloading](#installing)
 	3. [Executing Program](#executing)
 3. [Authors](#authors)
-4. [License](#license)
 5. [Acknowledgement](#acknowledgement)
 6. [Screenshots](#screenshots)
 
@@ -64,9 +63,6 @@ git clone https://github.com/matteobonanomi/disaster-response.git
 
 * [Matteo Bonanomi](https://github.com/matteobonanomi)
 
-<a name="license"></a>
-## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <a name="acknowledgement"></a>
 ## Acknowledgements
@@ -77,14 +73,14 @@ git clone https://github.com/matteobonanomi/disaster-response.git
 <a name="screenshots"></a>
 ## Screenshots
 
-1. This is an example of a message you can type to test Machine Learning model performance
+1. These are some graphs to visualize the training dataset
 
-![Sample Input](screenshots/sample_input.png)
+![Training Data Visualize](imgs/data_visualize.png)
 
-2. After clicking **Classify Message**, you can see the categories which the message belongs to highlighted in green
+2. You can type your message in the input field as shown **Classify Message**, you can see the categories which the message belongs to highlighted in green
 
-![Sample Output](screenshots/sample_output.png)
+![Querying](screenshots/sample_output.png)
 
-3. The main page shows some graphs about training dataset, provided by Figure Eight
+3. On clicking **Classify Message**, you can see the categories which the message belongs to highlighted in green
 
-![Main Page](screenshots/main_page.png)
+![CLassification Result](screenshots/main_page.png)
