@@ -77,7 +77,7 @@ git clone https://github.com/matteobonanomi/disaster-response.git
 
 ![Training Data Visualize](imgs/data_visualize.png)
 
-2. You can type your message in the input field as shown **Classify Message**, you can see the categories which the message belongs to highlighted in green
+2. You can type your message in the input field as shown.
 
 ![Querying](imgs/querying.png)
 
