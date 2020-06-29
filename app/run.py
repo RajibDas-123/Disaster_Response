@@ -29,9 +29,12 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         sentence_list = nltk.sent_tokenize(text)
         for sentence in sentence_list:
             pos_tags = nltk.pos_tag(tokenize(sentence))
-            first_word, first_tag = pos_tags[0]
-            if first_tag in ['VB', 'VBP'] or first_word == 'RT':
-                return True
+            try:
+                first_word, first_tag = pos_tags[0]
+                if first_tag in ['VB', 'VBP'] or first_word == 'RT':
+                    return True
+            except:
+                return False        
         return False
 
     def fit(self, X, y=None):
@@ -42,17 +45,21 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         return pd.DataFrame(X_tagged)
 
 #tokenize method
-def starting_verb(self, text):
-    sentence_list = nltk.sent_tokenize(text)
-    for sentence in sentence_list:
-        pos_tags = nltk.pos_tag(tokenize(sentence))
-        try:
-            first_word, first_tag = pos_tags[0]
-            if first_tag in ['VB', 'VBP'] or first_word == 'RT':
-                return True
-        except:
-            return False        
-    return False
+def tokenize(text):
+    url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+    detected_urls = re.findall(url_regex, text)
+    for url in detected_urls:
+        text = text.replace(url, "urlplaceholder")
+
+    tokens = word_tokenize(text)
+    lemmatizer = WordNetLemmatizer()
+
+    clean_tokens = []
+    for tok in tokens:
+        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+        clean_tokens.append(clean_tok)
+
+    return clean_tokens
 
 # load data
 engine = create_engine('sqlite:///./data/DisasterResponse.db')
