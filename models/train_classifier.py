@@ -147,13 +147,13 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
     """
     y_pred = model.predict(X_test)
-    accuracy = (y_pred == y_test).mean().mean()
+    accuracy = (Y_pred == Y_test).mean().mean()
     print('Average accuracy {0:.2f}% \n'.format(overall_accuracy*100))
 
     for catg in len(category_names):
         print('------------------------------------------------------\n')
         print('FEATURE: {}\n'.format(category_names[catg]))
-        print(classification_report(y_test[:, catg],y_pred_pd[:, catg]))
+        print(classification_report(Y_test[:, catg],Y_pred_pd[:, catg]))
 
     
 
