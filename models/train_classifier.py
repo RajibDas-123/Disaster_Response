@@ -150,7 +150,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     accuracy = (Y_pred == Y_test).mean().mean()
     df_pred = pd.DataFrame(Y_pred, columns=category_names)
     df_test = pd.DataFrame(Y_test, columns=category_names)
-    print('Average accuracy {0:.2f}% \n'.format(overall_accuracy*100))
+    print('Average accuracy {0:.2f}% \n'.format(accuracy*100))
 
     for catg in len(category_names):
         print('------------------------------------------------------\n')
