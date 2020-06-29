@@ -152,10 +152,10 @@ def evaluate_model(model, X_test, Y_test, category_names):
     df_test = pd.DataFrame(Y_test, columns=category_names)
     print('Average accuracy {0:.2f}% \n'.format(accuracy*100))
 
-    for catg in len(category_names):
+    for catg in category_names:
         print('------------------------------------------------------\n')
         print('FEATURE: {}\n'.format(category_names[catg]))
-        print(classification_report(df_test[:, catg],df_pred_pd[:, catg]))
+        print(classification_report(df_test[catg],df_pred[catg]))
 
     
 
