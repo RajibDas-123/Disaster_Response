@@ -8,12 +8,18 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.model_selection import train_test_split
+from sklearn.multioutput import MultiOutputClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier,AdaBoostClassifier
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from sklearn.pipeline import Pipeline, FeatureUnion
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import make_scorer, accuracy_score, f1_score, fbeta_score, classification_report
+from scipy.stats import hmean
+from scipy.stats.mstats import gmean
 
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
     """
@@ -89,15 +95,30 @@ def build_model():
         None
 
     """
+    # pipeline = Pipeline([
+    #     ('vect', CountVectorizer(tokenizer=tokenize)),
+    #     ('tfidf', TfidfTransformer()),
+    #     ('clf', RandomForestClassifier())
+    # ])
     pipeline = Pipeline([
-        ('vect', CountVectorizer(tokenizer=tokenize)),
-        ('tfidf', TfidfTransformer()),
-        ('clf', RandomForestClassifier())
+        ('features', FeatureUnion([
+
+            ('text_pipeline', Pipeline([
+                ('vect', CountVectorizer(tokenizer=tokenize)),
+                ('tfidf', TfidfTransformer())
+            ])),
+
+            ('starting_verb', StartingVerbExtractor())
+        ])),
+
+        ('clf', MultiOutputClassifier(AdaBoostClassifier()))
     ])
     
     # parameters = {
-    #     'tfidf__use_idf':[True, False],
-    #     'clf__criterion':["gini", "entropy"]
+    #     'features__text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
+    #     'features__text_pipeline__vect__max_df': (0.75, 1.0),
+    #     'features__text_pipeline__vect__max_features': (None, 5000),
+    #     'features__text_pipeline__tfidf__use_idf': (True, False),
     # }
 
     # cv = GridSearchCV(pipeline, param_grid=parameters)
@@ -124,6 +145,11 @@ def evaluate_model(model, X_test, Y_test, category_names):
     y_pred = model.predict(X_test)
     accuracy = (y_pred == y_test).mean().mean()
     print('Average accuracy {0:.2f}% \n'.format(overall_accuracy*100))
+
+    for catg in len(category_names):
+        print('------------------------------------------------------\n')
+        print('FEATURE: {}\n'.format(category_names[catg]))
+        print(classification_report(y_test[:, catg],y_pred_pd[:, catg]))
 
     
 
