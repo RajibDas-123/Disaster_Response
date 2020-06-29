@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 from sqlalchemy import create_engine
 
 
+
 def load_data(messages_filepath, categories_filepath):
 
     """
@@ -74,7 +75,7 @@ def save_data(df, database_filename):
     """
 
     engine = create_engine('sqlite:///'+database_filename)
-    df.to_sql('disaster_data', engine, index=False)
+    df.to_sql('disaster', engine, index=False)
       
 
 
