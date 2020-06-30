@@ -99,12 +99,7 @@ def build_model():
     Output:
         None
 
-    """
-    # pipeline = Pipeline([
-    #     ('vect', CountVectorizer(tokenizer=tokenize)),
-    #     ('tfidf', TfidfTransformer()),
-    #     ('clf', RandomForestClassifier())
-    # ])
+    """    
     pipeline = Pipeline([
         ('features', FeatureUnion([
 
@@ -119,14 +114,14 @@ def build_model():
         ('clf', MultiOutputClassifier(AdaBoostClassifier()))
     ])
     
-    # parameters = {
-    #     'features__text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
-    #     'features__text_pipeline__vect__max_df': (0.75, 1.0),
-    #     'features__text_pipeline__vect__max_features': (None, 5000),
-    #     'features__text_pipeline__tfidf__use_idf': (True, False),
-    # }
+    parameters = {
+        'features__text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
+        'features__text_pipeline__vect__max_df': (0.75, 1.0),
+        'features__text_pipeline__vect__max_features': (None, 5000),
+        'features__text_pipeline__tfidf__use_idf': (True, False),
+    }
 
-    # cv = GridSearchCV(pipeline, param_grid=parameters)
+    cv = GridSearchCV(pipeline, param_grid=parameters)
     
     return pipeline
 
