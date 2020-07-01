@@ -33,11 +33,17 @@ After you run the program and open the url, you will see the landing page like t
 
 ![Querying](imgs/querying.png)
 
+
+
 If you scroll down you will see a visualization of the training data set.
 
 ![Training Data Visualize](imgs/data_visualize.png)
 
+
+
 You can type your message in the input field on the top.
+
+
 
 On clicking **Classify Message**, you can see the categories that the message belongs to highlighted in green. Like this
 
@@ -71,10 +77,3 @@ You need to have following dependencies installed in your system in order to run
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
-
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
