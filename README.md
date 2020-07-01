@@ -29,10 +29,7 @@ git clone https://github.com/RajibDas-123/Disaster_Response
 
 ## Usage example
 
-After you run the program and open the url, you will see the landing page like this
-
-![Querying](imgs/querying.png)
-
+After you run the program and open the url, you will see the landing page like shown at the top.
 
 
 If you scroll down you will see a visualization of the training data set.
@@ -41,7 +38,9 @@ If you scroll down you will see a visualization of the training data set.
 
 
 
-You can type your message in the input field on the top.
+You can type your message in the input field as shown below.
+
+![Querying](imgs/querying.png)
 
 
 
