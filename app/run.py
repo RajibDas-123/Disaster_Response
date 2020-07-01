@@ -26,9 +26,9 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
     def get_starting_verb(self, text):
         sent_lst = nltk.sent_tokenize(text)
         for sent in sent_lst:
-            postags = nltk.pos_tag(tokenize(sentence))
+            postags = nltk.pos_tag(tokenize(sent))
             try:
-                fst_wrd, fst_tag = pos_tags[0]
+                fst_wrd, fst_tag = postags[0]
                 if fst_tag in ['VB', 'VBP'] or fst_wrd == 'RT':
                     return True
             except:
