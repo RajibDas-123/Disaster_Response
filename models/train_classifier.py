@@ -24,20 +24,18 @@ from scipy.stats import hmean
 from scipy.stats.mstats import gmean
 
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
-    """
-    Starting Verb Extractor class
-    
-    This class extract the starting verb of a sentence,
-    creating a new feature for the ML classifier
+    """    
+    This class is responsible for extracting starting verb from the sentence.
+    This starting verb will be used as a new feature.
     """
 
-    def starting_verb(self, text):
-        sentence_list = nltk.sent_tokenize(text)
-        for sentence in sentence_list:
-            pos_tags = nltk.pos_tag(tokenize(sentence))
+    def get_starting_verb(self, text):
+        sent_lst = nltk.sent_tokenize(text)
+        for sent in sent_lst:
+            postags = nltk.pos_tag(tokenize(sentence))
             try:
-                first_word, first_tag = pos_tags[0]
-                if first_tag in ['VB', 'VBP'] or first_word == 'RT':
+                fst_wrd, fst_tag = pos_tags[0]
+                if fst_tag in ['VB', 'VBP'] or fst_wrd == 'RT':
                     return True
             except:
                 return False        
@@ -47,12 +45,12 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        X_tagged = pd.Series(X).apply(self.starting_verb)
-        return pd.DataFrame(X_tagged)
+        X_new_features = pd.Series(X).apply(self.get_starting_verb)
+        return pd.DataFrame(X_new_features)
 
 def load_data(database_filepath):
     """
-    Load Data Function
+    Function to load the datasets
     
     Arguments:
         database_filepath -> path to SQLite db
@@ -70,9 +68,18 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
-    url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
-    detected_urls = re.findall(url_regex, text)
-    for url in detected_urls:
+    """
+    Function to get tokens from a text
+    
+    Arguments:
+        text -> string to tokenize
+    Output:
+        clean_token -> list of tokens
+    """
+
+    url_pat = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+    found_urls = re.findall(url_pat, text)
+    for url in found_urls:
         text = text.replace(url, "urlplaceholder")
 
     tokens = word_tokenize(text)
@@ -80,7 +87,7 @@ def tokenize(text):
 
     clean_tokens = []
     for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+        clean_token = lemmatizer.lemmatize(tok).lower().strip()
         clean_tokens.append(clean_tok)
 
     return clean_tokens
@@ -114,14 +121,14 @@ def build_model():
         ('clf', MultiOutputClassifier(AdaBoostClassifier()))
     ])
     
-    parameters = {
+    params = {
         'features__text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
-        'features__text_pipeline__vect__max_df': (0.75, 1.0),
-        'features__text_pipeline__vect__max_features': (None, 5000),
+        'features__text_pipeline__vect__max_df': (0.6, 1.0),
+        'features__text_pipeline__vect__max_features': (None, 6000),
         'features__text_pipeline__tfidf__use_idf': (True, False),
     }
 
-    cv = GridSearchCV(pipeline, param_grid=parameters)
+    cv = GridSearchCV(pipeline, param_grid=params)
     
     return pipeline
 
