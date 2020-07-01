@@ -88,7 +88,7 @@ def tokenize(text):
     clean_tokens = []
     for tok in tokens:
         clean_token = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tokens)
+        clean_tokens.append(clean_token)
 
     return clean_tokens
         
