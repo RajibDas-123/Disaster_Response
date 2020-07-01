@@ -51,7 +51,7 @@ def tokenize(text):
 
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
-    
+
     clean_tokens = []
     for tok in tokens:
         clean_token = lemmatizer.lemmatize(tok).lower().strip()
@@ -76,6 +76,9 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+
+    cat_counts = df.iloc[:, 4:].sum()
+    cat_names = list(cat_counts.index)
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -95,6 +98,24 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=cat_names,
+                    y=cat_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category"
                 }
             }
         }
