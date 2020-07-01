@@ -77,6 +77,7 @@ def save_data(df, database_filename):
     """
 
     engine = create_engine('sqlite:///'+database_filename)
+    engine.execute("DROP table if exists disaster")
     df.to_sql('disaster', engine, index=False)
       
 

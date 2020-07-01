@@ -51,11 +51,11 @@ def tokenize(text):
 
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
-
+    
     clean_tokens = []
     for tok in tokens:
         clean_token = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
+        clean_tokens.append(clean_token)
 
     return clean_tokens
 
