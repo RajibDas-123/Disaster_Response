@@ -1,49 +1,19 @@
-# Disaster Response Pipeline Project
+# Disaster Response
 
-![Landing Page](imgs/landing.png)
+This project helps categorizing any message against thirty six categories to check whether or not it is relevant to disaster response professionals. 
 
-## Table of Contents
-1. [Description](#description)
-2. [Getting Started](#getting_started)
-	1. [Dependencies](#dependencies)
-	2. [Downloading](#installing)
-	3. [Executing Program](#executing)
-3. [Authors](#authors)
-5. [Acknowledgement](#acknowledgement)
-6. [Screenshots](#screenshots)
+![Home Page](imgs/landing.png)
 
-<a name="descripton"></a>
-## Description
+## Installation
 
-This Project is part of Data Science Nanodegree Program by Udacity in collaboration with Figure Eight.
-The initial dataset contains pre-labelled tweet and messages from real-life disaster. 
-The aim of the project is to build a Natural Language Processing tool that categorize messages.
+### Download
 
-The Project is divided in the following Sections:
-
-1. Data Processing, ETL Pipeline to extract data from source, clean data and save them in a proper databse structure
-2. Machine Learning Pipeline to train a model able to classify text message in categories
-3. Web App to show model results in real time. 
-
-<a name="getting_started"></a>
-## Getting Started
-
-<a name="dependencies"></a>
-### Dependencies
-* Python 3.5+ (I used Python 3.7)
-* Machine Learning Libraries: NumPy, SciPy, Pandas, Sciki-Learn
-* Natural Language Process Libraries: NLTK
-* SQLlite Database Libraqries: SQLalchemy
-* Web App and Data Visualization: Flask, Plotly
-
-<a name="installing"></a>
-### Downloading
-Clone this GIT repository:
+You can download or clone the Git repository at:
 ```
 git clone https://github.com/RajibDas-123/Disaster_Response
 ```
-<a name="executing"></a>
-### Executing Program:
+### Execute
+
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
@@ -57,30 +27,54 @@ git clone https://github.com/RajibDas-123/Disaster_Response
 3. Go to http://0.0.0.0:3001/
 
 
+## Usage example
 
-<a name="authors"></a>
-## Authors
+After you run the program and open the url, you will see the landing page like this
 
-* [Rajib Das](https://github.com/RajibDas-123/Disaster_Response)
+![Querying](imgs/querying.png)
+
+If you scroll down you will see a visualization of the training data set.
+
+![Training Data Visualize](imgs/data_visualize.png)
+
+You can type your message in the input field on the top.
+
+On clicking **Classify Message**, you can see the categories that the message belongs to highlighted in green. Like this
+
+![CLassification Result](imgs/classification_result.png)
+
+## Development setup
+
+You need to have following dependencies installed in your system in order to run this application.
+
+* Python 3.5+ 
+* Machine Learning Libraries: NumPy, SciPy, Pandas, Sciki-Learn
+* Natural Language Process Libraries: NLTK
+* SQLlite Database Libraqries: SQLalchemy
+* Web App and Data Visualization: Flask, Plotly
 
 
-<a name="acknowledgement"></a>
-## Acknowledgements
+## Meta
+### Authors
+
+* [Rajib Das](https://github.com/RajibDas-123)
+
+### Acknowledgements
 
 * [Udacity](https://www.udacity.com/) for providing such a complete Data Science Nanodegree Program
 * [Figure Eight](https://www.figure-eight.com/) for providing messages dataset to train my model
 
-<a name="screenshots"></a>
-## Screenshots
+## Contributing
 
-1. These are some graphs to visualize the training dataset
+1. Fork it (<https://github.com/RajibDas-123/Disaster_Response/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
 
-![Training Data Visualize](imgs/data_visualize.png)
-
-2. You can type your message in the input field as shown.
-
-![Querying](imgs/querying.png)
-
-3. On clicking **Classify Message**, you can see the categories which the message belongs to highlighted in green
-
-![CLassification Result](imgs/classification_result.png)
+<!-- Markdown link & img dfn's -->
+[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/datadog-metrics
+[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
